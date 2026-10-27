@@ -74,3 +74,12 @@ that of on_time orders by at least 0.1 points.
 ## Open question for the business problem
 If early deliveries are common, the estimated delivery date may be too
 conservative. This will be checked in the analysis.
+
+## Potential confounders (to check in the analysis)
+- Product perishability: perishable products may ship faster (more likely
+  early) but may also arrive damaged, which lowers the review score
+  independently of delivery time. To check: count orders by product
+  category and compare `review_score` across delay buckets within each
+  category.
+- Customer location and product category (see H2): early orders may differ
+  from on_time orders in distance or category
