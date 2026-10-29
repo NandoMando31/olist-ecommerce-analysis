@@ -83,14 +83,19 @@ increase with weight: light < medium < heavy < super_heavy.
 **Reasoning:** Heavier or bulkier packages are harder for sellers and
 carriers to handle and ship, which should add delays.
 
-**Would be wrong if:** (1) the late share of heavy and super_heavy orders
-combined is not at least 3 percentage points higher than that of light and
+**Would be wrong if:**(1) the late share of heavy and super_heavy orders 
+combined is not at least 2 percentage points higher than that of light and
 medium orders combined, OR (2) the late share of any heavier group is lower
 than that of the previous one by more than 1 percentage point.
 
-**Why these thresholds:** 3 points is the minimum gap I consider relevant
-for an operations decision; 1 point tolerates small fluctuations between
-adjacent groups.
+**Why these thresholds:**
+- 2 points (heavy and super_heavy vs light and medium): The overall late rate is
+  only 6.77%, so a 3-point gap would require a ~44% relative increase and could
+  reject a real but moderate effect (false negative). 2 points is still large
+  enough to matter operationally. Group sizes will be reported to judge noise
+  (false positive risk).
+- 1 point (between adjacent groups): tolerates small fluctuations between
+  neighboring weight groups.
 
 ## Open question for the business problem
 If early deliveries are common, the estimated delivery date may be too
@@ -104,3 +109,16 @@ conservative. This will be checked in the analysis.
   category.
 - Customer location and product category (see H2): early orders may differ
   from on_time orders in distance or category
+
+## Amendment 1 (2026-10-28, delay buckets; group sizes only, no review scores)
+- Delay distribution of 96,470 delivered orders: 91.89% early, 1.34% on_time,
+  6.77% late.
+- on_time has only 1,292 orders, so it is a small control group and early is
+  the real baseline. The H2 early vs on_time comparison will be interpreted
+  with caution.
+- Late buckets, set from the delay distribution only: late_1 = 1-4 days
+  (2,323 orders), late_2 = 5-10 days (2,119), late_3 = more than 10 days (2,092).
+
+## Amendment 2 (2026-10-28, H3 threshold)
+- Changed the H3 gap threshold from 3 to 2 percentage points after learning the
+  overall late rate (6.77%), and before looking at any results by weight group.
