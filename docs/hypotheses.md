@@ -70,6 +70,27 @@ that of on_time orders by at least 0.1 points.
   late-delivery effect, since both groups met the promise, so I accept a
   smaller gap. It may be revisited on Day 2 after checking group sizes (not
   review scores).
+## H3: Are heavier orders delivered late more often?
+**Groups (`weight_group`, based on total order weight in grams, the sum of
+`product_weight_g` of all items):** light (0–1,000), medium (1,000–10,000),
+heavy (10,000–20,000), super_heavy (over 20,000).
+Group sizes will be checked on Day 2 using only the weight distribution,
+before looking at delays.
+
+**Expectation:** The share of late orders (`delivery_delay_days` > 0) will
+increase with weight: light < medium < heavy < super_heavy.
+
+**Reasoning:** Heavier or bulkier packages are harder for sellers and
+carriers to handle and ship, which should add delays.
+
+**Would be wrong if:** (1) the late share of heavy and super_heavy orders
+combined is not at least 3 percentage points higher than that of light and
+medium orders combined, OR (2) the late share of any heavier group is lower
+than that of the previous one by more than 1 percentage point.
+
+**Why these thresholds:** 3 points is the minimum gap I consider relevant
+for an operations decision; 1 point tolerates small fluctuations between
+adjacent groups.
 
 ## Open question for the business problem
 If early deliveries are common, the estimated delivery date may be too
