@@ -151,6 +151,52 @@ bucket, and the share grows with delay; a worst-case check did not change
 the conclusions. A review score is an opinion, not a direct operational
 measure.
 
+### H1: Where is delivery time lost?
+| Segment | Orders | Median share of total delivery time |
+|---|---|---|
+| carrier_transit | 95,082 | 75.82% |
+| seller_handling | 95,082 | 19.58% |
+| approval | 95,082 | 0.20% |
+
+**Verdict: supported.** The median share of carrier transit is 75.82%, above
+the 45% threshold, and it is the largest segment.
+
+**Reading:** Most of the delivery time is spent between the carrier pickup
+and the delivery to the customer. This is consistent with the idea that
+distance across Brazil matters, but distance was not measured directly.
+
+**Limitations:** 1,396 of 96,478 delivered orders were excluded: 1,350 had a
+carrier pickup date before the approval date, 23 had a delivery date before
+the pickup date (negative durations), and the rest had missing dates. The
+three medians do not add up to 100% (a sum of medians is not the median of a
+sum). This analysis shows where time is spent, not which segment makes orders
+late.
+
+### H3: Are heavier orders delivered late more often?
+| Weight group | Orders | Late orders |
+|---|---|---|
+| light (0-1,000 g) | 55,724 | 6.46% |
+| medium (1,000-10,000 g) | 35,462 | 6.96% |
+| heavy (10,000-20,000 g) | 4,013 | 8.70% |
+| super_heavy (over 20,000 g) | 1,255 | 9.40% |
+
+**Verdict: supported.** (1) Heavy and super_heavy orders combined are late
+8.87% of the time versus 6.65% for light and medium combined: a gap of 2.22
+points, above the 2-point threshold. (2) The late share increases at every
+step, so no heavier group falls below the previous one.
+
+**Reading:** Heavier orders are late more often, consistent with the idea
+that bulky parcels are harder to ship. The gap clears the threshold by a
+small margin: with the original 3-point threshold the hypothesis would have
+been refuted. The threshold was changed before looking at results by weight
+(see Amendment 2).
+
+**Limitations:** This is an association. Weight may be linked to product
+category, distance or seller, which were not controlled. 16 delivered orders
+were excluded for missing or zero product weight. Point predictions for
+this analysis were not recorded before running it; the refutation thresholds
+were fixed beforehand.
+
 ### H2 exploratory follow-up (post-hoc, not a pre-registered hypothesis)
 Average review score by exact delay day (reviewed orders, days 0-15):
 the steepest daily drops are on days 1-3 (about -0.5 points per day); the
