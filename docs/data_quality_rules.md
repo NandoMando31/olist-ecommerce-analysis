@@ -12,3 +12,6 @@
 | 7 | Delivered orders missing approval or carrier date | 14 missing approval, 2 missing carrier (of 96,478) | Excluded from H1 segment analysis only; kept in delay analysis |
 | 8 | Canceled orders with a delivery date | 6 orders | Excluded by the `order_status = 'delivered'` filter; documented as inconsistency |
 | 9 | Delivered orders without a review | 768 orders overall (per-bucket share checked) | INNER JOIN for review metrics (only reviewed orders); no_review_pct reported per bucket to check for bias |
+| 10 | Delivered orders with carrier pickup date before approval date | 1,350 | Excluded from H1 segment analysis (negative handling time); cause unknown |
+| 11 | Delivered orders with customer delivery before carrier pickup | 23 | Excluded from H1 segment analysis (negative transit time) |
+| 12 | Products with missing weight / zero weight | 2 / 4 products | Orders containing them are excluded from H3 (total weight cannot be computed reliably) |
